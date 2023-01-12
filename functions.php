@@ -34,3 +34,23 @@ function view_posts(){
 function view_search(){
   return '検索ページ';
 }
+
+
+// mediaパスからドメインを取り除くショートカット
+function delete_host_from_attachment_url($url){
+  $ptn = '/^http(s)?:\/\/[^\/\s]+(.*)$/';
+  if ( preg_match( $ptn, $url, $m ) ) {
+      $url = $m[2];
+  }
+  return $url;
+}
+add_filter(
+  'wp_get_attachment_url', 
+  'delete_host_from_attachment_url'
+);
+add_filter(
+  'attachment_link', 
+  'delete_host_from_attachment_url'
+);
+
+
