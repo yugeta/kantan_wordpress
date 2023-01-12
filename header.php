@@ -18,7 +18,21 @@
     </a>
     <nav>
       <input id='menu_toggle' type='checkbox' style='display:none;'>
-      <ul></ul>
+      <ul>
+<?php
+$menus = wp_get_nav_menu_items('ヘッダメニュー');
+if(!$menus){return;}
+$html = '';
+foreach($menus as $data){
+  $html .= '<li>';
+  $html .= '<a href="'. $data->url .'">';
+  $html .= $data->title;
+  $html .= '</a>';
+  $html .= '</li>'.PHP_EOL;
+}
+echo $html;
+?>
+      </ul>
       <label for='menu_toggle'>
         <span></span>
         <span></span>

@@ -24,7 +24,7 @@ function get_content(){
 }
 
 function view_page(){
-  return 'トップページ（固定ページ）、投稿ページ、固定ページのどれかを表示';
+  return get_the_content();
 }
 
 function view_posts(){
