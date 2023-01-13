@@ -6,18 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <link rel="icon" href="<? echo get_site_icon_url();?>" />
   <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>"/>
-  <script src="<?php echo get_template_directory_uri();?>/js/main.js"></script>
+<?php
+$local_path = get_theme_file_path();
+$page_uri = get_page_uri();
+if($page_uri && is_file($local_path .'/'. $page_uri .'.css')){
+  echo '<link rel="stylesheet" href="'. get_template_directory_uri() .'/'. $page_uri .'.css" />';
+}
+if($page_uri && is_file($local_path .'/'. $page_uri .'.js')){
+  echo '<script src="'. get_template_directory_uri() .'/'. $page_uri .'.js" /></scripot>';
+}
+?>
 </head>
 <body>
   <header>
+    <input id="toggle_menu" type="checkbox" style='display:none'>
     <a class='title-area' href='/'>
-      <div class='catch gothic'><?php echo get_bloginfo('description');?></div>
-      <div class='title mincho bold'>
-        <img class='logo' src='<?php echo get_template_directory_uri();?>/img/logo.svg'>
-      <?php echo get_bloginfo('name');?></div>
+      <img class='logo' src='<?php echo get_site_icon_url();?>'>
+      <div class='header-title'>
+        <div class='title mincho bold'><?php echo get_bloginfo('name');?></div>
+        <div class='catch gothic'><?php echo get_bloginfo('description');?></div>
+      </div>
     </a>
     <nav>
-      <input id='menu_toggle' type='checkbox' style='display:none;'>
       <ul>
 <?php
 $menus = wp_get_nav_menu_items('ヘッダメニュー');
@@ -33,9 +43,7 @@ foreach($menus as $data){
 echo $html;
 ?>
       </ul>
-      <label for='menu_toggle'>
-        <span></span>
-        <span></span>
+      <label class='hamburger' for='toggle_menu'>
         <span></span>
       </label>
     </nav>

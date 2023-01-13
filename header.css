@@ -1,0 +1,184 @@
+header{
+  height:var(--size-header-height);
+  background-color:rgba(255,255,255,0.5);
+  box-shadow: 4px 4px 20px rgba(0,0,0,0.5);
+  display:flex;
+  position:relative;
+}
+
+/* Title */
+header *{
+  text-decoration:none;
+  color:black;
+}
+header .title-area{
+  display:flex;
+  align-items:center;
+  height:100%;
+}
+header .title-area .logo{
+  padding:10px;
+  height:100%;
+}
+header .title-area .title{
+  font-size:1.5rem;
+  font-weight:bold;
+}
+header .title-area .catch{
+  font-size:0.8rem;
+}
+
+/* Menu */
+header nav{
+  margin-left:auto;
+  height:100%;
+}
+header nav > ul{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  height:100%;
+  margin:0 10px;
+}
+header nav > ul > li{
+  height:100%;
+  display:flex;
+  align-items:center;
+  position:relative;
+}
+header nav > ul > li a{
+  font-size:0.9rem;
+  line-height:var(--size-header-height);
+}
+header nav > ul > li a::after{
+  content: '';
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: black;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transform-origin: right center;
+  transform: scaleX(0.0);
+  position:absolute;
+  bottom:0px;
+  left:0;
+}
+header nav > ul > li a:hover::after{
+  transform-origin: left center;
+  transform: scaleX(1.0);
+}
+
+/* Hamburger menu */
+:root{
+  --hamburger-width   : 25px;
+  --hamburger-size    : 2px;
+  --hamburger-padding : 10px;
+  --hamburger-space   : 5px;
+  --nav-width         : 150px;
+}
+
+header .hamburger {
+  position:absolute;
+  top:50%;
+  transform: translateY(-50%);
+  right:10px;
+  display     : block;
+  width       : var(--hamburger-width);
+  height      : var(--hamburger-width);
+  cursor      : pointer;
+  padding-top     : var(--hamburger-padding);
+}
+
+header .hamburger > span,
+header .hamburger > span::before,
+header .hamburger > span::after{
+  content          : '';
+  background-color : rgba(0,0,0,1);
+  display          : block;
+  width            : 100%;
+  height           : var(--hamburger-size);
+  transition-property : transform;
+  transition-duration : 0.3s;
+}
+header .hamburger > span{
+  position:relative;
+}
+header .hamburger > span::before{
+  position:absolute;
+  bottom : calc(var(--hamburger-space) + var(--hamburger-size));
+}
+header .hamburger > span::after{
+  position:absolute;
+  top : calc(var(--hamburger-space) + var(--hamburger-size));
+}
+
+#toggle_menu {
+  display: none;
+}
+
+
+@media screen and (max-width:768px){
+  header .title-area .title{
+    font-size:1.2rem;
+  }
+  header .title-area .catch{
+    font-size:0.8rem;
+  }
+
+  header nav ul{
+    position:absolute;
+    top: var(--size-header-height);
+    left:-100%;
+    z-index:20;
+    width:50%;
+    height:auto;
+    background-color:white;
+    margin:auto;
+    transition-property : left;
+    transition-duration : 0.3s;
+    box-shadow:4px 4px 20px rgba(0,0,0,0.3);
+  
+    flex-direction:column;
+    gap:0;
+  }
+  
+  header nav > ul > li{
+    width:100%;
+    height:60px;
+    padding:10px;
+    border-top:1px solid #ccc;
+  }
+  header nav > ul > li > a{
+    height:auto;
+    line-height:inherit;
+  }
+  header nav ul > *:last-child{
+    border-bottom:1px solid #ccc;
+  }
+
+  #toggle_menu:checked ~ nav .hamburger > span {
+    background-color:rgba(0,0,0,0);
+  }
+  #toggle_menu:checked ~ nav .hamburger > span::before {
+    bottom:0;
+    transform: rotate(45deg);
+  }
+  #toggle_menu:checked ~ nav .hamburger > span::after {
+    top:0;
+    transform: rotate(-45deg);
+  }
+  #toggle_menu:checked ~ nav ul{
+    left : 0;
+  }
+}
+
+@media screen and (min-width:769px){
+  header .hamburger{
+    display:none;
+  }
+  header .menu{
+    height:100%;
+  }
+}
+

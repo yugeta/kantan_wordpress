@@ -9,3 +9,6 @@ Author URI: http://example.com
 Company: 所属会社
 Create: 2023.01.01
 */
+@import 'common.css';
+@import 'header.css';
+@import 'footer.css';
