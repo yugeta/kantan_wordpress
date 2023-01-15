@@ -26,7 +26,9 @@ function get_content(){
 }
 
 function view_page(){
-  return get_the_content();
+//   return get_the_content();
+//   return get_post();
+  the_content();
 }
 
 function view_posts(){
@@ -53,3 +55,23 @@ add_filter(
   'attachment_link', 
   'delete_host_from_attachment_url'
 );
+
+
+// 記事のショートコード対応
+function view_foo_function(){
+  return 'foo';
+}
+add_shortcode('view_foo', 'view_foo_function');
+
+// 値の受け渡し
+function view_bar_function($atts=[]){
+    extract(shortcode_atts(['text' => ''] , $atts));
+  return 'foo: '. $text;
+}
+add_shortcode('view_bar', 'view_bar_function');
+
+// HTMLの埋め込み値取得
+function view_html_function($atts=[] , $content=null){
+  return 'html: '. $content .' -> link';
+}
+add_shortcode('view_html', 'view_html_function');
