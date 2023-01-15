@@ -1,5 +1,7 @@
 <?php
 
+require_once 'php/contact.php';
+
 function get_content(){
   // サイトトップページ
   if(is_front_page()){
@@ -35,7 +37,6 @@ function view_search(){
   return '検索ページ';
 }
 
-
 // mediaパスからドメインを取り除くショートカット
 function delete_host_from_attachment_url($url){
   $ptn = '/^http(s)?:\/\/[^\/\s]+(.*)$/';
@@ -52,5 +53,3 @@ add_filter(
   'attachment_link', 
   'delete_host_from_attachment_url'
 );
-
-
