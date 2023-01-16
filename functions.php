@@ -24,7 +24,7 @@ function get_content(){
 }
 
 function view_page(){
-  return get_the_content();
+  the_content();
 }
 
 function view_posts(){
